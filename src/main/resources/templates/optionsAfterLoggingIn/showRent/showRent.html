@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Wypożyczalnia Samochodów osobowych</title>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="obiekty">
+
+        <h3 th:text="Zalogowany+' '+jako+' '+${employee.firstName}"></h3>
+        <hr>
+        <a th:href="@{/afterLoggingInController/showAvailableCars}"
+           class="btn btn-info col-2">
+            Wypożycz Auto
+        </a>
+        <a th:href="@{/afterLoggingInController/showCustomerCars}"
+           class="btn btn-info col-3">
+            Sprawdź Wypożyczenia
+        </a>
+        <a th:href="@{/optionOnADate/dataChange}"
+           class="btn btn-info col-2">
+            Zmiana danych
+        </a>
+        <a th:href="@{/afterLoggingInController/logout}"
+           class="btn btn-info col-2"
+           onclick="if(!confirm('Czy na pewno chcesz się wylogować?'))return false">
+            Wylogowanie
+        </a>
+        <p></p>
+
+    </div>
+    <h3>Twoje auta:</h3>
+    <hr>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Pojemnosc silnika w cm3</th>
+            <th>Rok Produkcji</th>
+            <th>Moc</th>
+            <th>Cena za dzień w zł</th>
+            <th>Wypożycz</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="tempCars : ${car}">
+            <td th:text="${tempCars.brand}"></td>
+            <td th:text="${tempCars.model}"></td>
+            <td th:text="${tempCars.engineCapacity}"></td>
+            <td th:text="${tempCars.yearOfproduction}"></td>
+            <td th:text="${tempCars.horsepower}"></td>
+            <td th:text="${tempCars.pricePerDay}"></td>
+            <td>
+
+                <a th:href="@{/advanceRental/car/return(carsId=${tempCars.id})}"
+                   class="btn btn-info btn-sm"
+                   onclick="if(!confirm('Czy na pewno chcesz zwrócić samochód?'))return false">
+                    Zwróć
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+    <span th:if="${car.isEmpty()}">Nie masz wypożyczonych samochodów.</span>
+
+
+    <h3>Historia wypozyczeń</h3>
+    <hr>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Od kiedy</th>
+            <th>Do kiedy</th>
+            <th>Cena</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="rentalsTemp : ${rentals}">
+            <td th:text="${rentalsTemp.car.brand}"></td>
+            <td th:text="${rentalsTemp.car.model}"></td>
+            <td th:text="${rentalsTemp.sinceWhen}"></td>
+            <td th:text="${rentalsTemp.untilWhen}"></td>
+            <td th:text="${rentalsTemp.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <span th:if="${rentals.isEmpty()}">Nie miałeś wypożyczonych samochodów.</span>
+</div>
+
+</body>
+

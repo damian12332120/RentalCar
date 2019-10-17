@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Wypożyczalnia samochodów osobowych</title>
+</head>
+
+<body>
+<div class="container">
+
+
+    <h3 th:text="Zalogowany+' '+jako+' '+${employee.firstName}"></h3>
+    <hr>
+    <a th:href="@{/afterLoggingInController/showAvailableCars}"
+       class="btn btn-info col-2">
+        Wypożycz Auto
+    </a>
+    <a th:href="@{/afterLoggingInController/showCustomerCars}"
+       class="btn btn-info col-3">
+        Sprawdź Wypożyczenia
+    </a>
+    <a th:href="@{/optionOnADate/dataChange}"
+       class="btn btn-info col-2">
+        Zmiana danych
+    </a>
+
+    <a th:href="@{/afterLoggingInController/logout}"
+       class="btn btn-info col-2"
+       onclick="if(!confirm('Czy na pewno chcesz się wylogować?'))return false">
+        Wylogowanie
+    </a>
+    <p></p>
+    <img th:src="@{/images/image.jpg}" width="846"/>
+
+</div>
+
+</body>

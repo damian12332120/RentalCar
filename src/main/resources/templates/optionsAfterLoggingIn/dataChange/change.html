@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Zmiana dany</title>
+</head>
+
+<body>
+<div class="container">
+    <h3 th:text="Zalogowany+' '+jako+' '+${employee.firstName}"></h3>
+    <hr>
+    <a th:href="@{/afterLoggingInController/showAvailableCars}"
+       class="btn btn-info col-2">
+        Wypożycz Auto
+    </a>
+    <a th:href="@{/afterLoggingInController/showCustomerCars}"
+       class="btn btn-info col-3">
+        Sprawdź Wypożyczenia
+    </a>
+    <a th:href="@{/optionOnADate/dataChange}"
+       class="btn btn-info col-2">
+        Zmiana danych
+    </a>
+    <a th:href="@{/afterLoggingInController/logout}"
+       class="btn btn-info col-2"
+       onclick="if(!confirm('Czy na pewno chcesz się wylogować?'))return false">
+        Wylogowanie
+    </a>
+    <p></p>
+
+    <h3>Zmiana danych</h3>
+    <hr>
+
+    <p class="h4 mb-4">Podaj swoje dane</p>
+
+    <form action="#" th:action="@{/data/updateData}"
+          th:object="${employee}" method="POST"
+          oninput='confirmPassword.setCustomValidity(confirmPassword.value != password.value ? "Hasła muszą być identyczne." : "")'>
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <input type="hidden" th:field="*{login}"/>
+
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="Imie">
+        <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</td>
+
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 col-4" placeholder="Nazwisko">
+        <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</td>
+
+        <td><input type="text" th:field="*{email}"
+                   class="form-control mb-4 col-4" placeholder="Email"></td>
+        <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+
+        <input type="password" th:field="*{password}"
+               class="form-control mb-4 col-4" placeholder="Hasło">
+        <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+
+        <input type="password" th:field="*{confirmPassword}"
+               class="form-control mb-4 col-4" placeholder="Hasło">
+        <td th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Password Error</td>
+
+        <button type="submit" class="btn btn-info col-2">Zapisz</button>
+
+    </form>
+
+</div>
+
+
+</body>
+
+</html>
