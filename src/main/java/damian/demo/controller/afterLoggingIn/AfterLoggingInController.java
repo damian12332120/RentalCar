@@ -1,7 +1,7 @@
 package damian.demo.controller.afterLoggingIn;
 
-import damian.demo.controller.car.CarsController;
 import damian.demo.online.User;
+import damian.demo.service.Car.CarService;
 import damian.demo.service.oldRent.OldRentlasService;
 import damian.demo.service.rent.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/afterLoggingInController")
 public class AfterLoggingInController {
+
     @Autowired
-    private CarsController carsController;
+    private CarService carService;
     @Autowired
     private RentService rentService;
     @Autowired
@@ -28,7 +29,7 @@ public class AfterLoggingInController {
     public String showAvailableCars(Model theModel) {
 
         theModel.addAttribute("employee", User.online());
-        theModel.addAttribute("car", carsController.getCarService().findAvailableCars());
+        theModel.addAttribute("car", carService.findAvailableCars());
         return "optionsAfterLoggingIn/rent/rentCar";
     }
 

@@ -38,7 +38,6 @@ public class AdvancedRentalController {
         car = carService.findById(theId);
         model.addAttribute("employee", User.online());
         model.addAttribute("car", car);
-        model.addAttribute("localDateTime", LocalDate.now());
         return "optionsAfterLoggingIn/rent/advancedRentalOptions";
     }
 

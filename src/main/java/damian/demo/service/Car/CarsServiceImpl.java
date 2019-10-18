@@ -20,7 +20,6 @@ public class CarsServiceImpl implements CarService {
     public CarsServiceImpl() {
     }
 
-
     @Override
     public Car findById(int theId) {
         Optional<Car> result = carsRepository.findById(theId);
@@ -39,5 +38,10 @@ public class CarsServiceImpl implements CarService {
     @Override
     public void save(Car car) {
         carsRepository.save(car);
+    }
+
+    @Override
+    public void delete(Car car){
+        carsRepository.delete(car);
     }
 }

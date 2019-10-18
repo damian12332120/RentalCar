@@ -1,6 +1,7 @@
 package damian.demo.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Car {
@@ -94,6 +95,27 @@ public class Car {
 
     public void setAvalible(boolean avalible) {
         isAvalible = avalible;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+        Car car = (Car) o;
+        return id == car.id &&
+                yearOfproduction == car.yearOfproduction &&
+                engineCapacity == car.engineCapacity &&
+                pricePerDay == car.pricePerDay &&
+                isAvalible == car.isAvalible &&
+                Objects.equals(brand, car.brand) &&
+                Objects.equals(model, car.model) &&
+                Objects.equals(horsepower, car.horsepower);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, brand, model, yearOfproduction, engineCapacity, horsepower, pricePerDay, isAvalible);
     }
 
     @Override
