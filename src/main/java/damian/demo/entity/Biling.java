@@ -2,6 +2,7 @@ package damian.demo.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Objects;
 
 @Entity
 public class Biling {
@@ -56,5 +57,30 @@ public class Biling {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Biling)) return false;
+        Biling biling = (Biling) o;
+        return Objects.equals(name, biling.name) &&
+                Objects.equals(adress, biling.adress) &&
+                Objects.equals(nip, biling.nip);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, adress, nip);
+    }
+
+    @Override
+    public String toString() {
+        return "Biling{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", adress='" + adress + '\'' +
+                ", nip='" + nip + '\'' +
+                '}';
     }
 }

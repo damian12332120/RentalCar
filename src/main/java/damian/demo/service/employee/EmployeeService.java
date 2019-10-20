@@ -1,4 +1,4 @@
-package damian.demo.service.Employee;
+package damian.demo.service.employee;
 
 import damian.demo.entity.Employee;
 import org.springframework.stereotype.Service;

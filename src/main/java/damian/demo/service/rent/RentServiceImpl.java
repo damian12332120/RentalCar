@@ -6,9 +6,9 @@ import damian.demo.entity.CurrentRentals;
 import damian.demo.entity.Employee;
 import damian.demo.entity.OldRentals;
 import damian.demo.online.User;
-import damian.demo.service.Car.CarService;
+import damian.demo.service.car.CarService;
 import damian.demo.service.email.EmailService;
-import damian.demo.service.oldRent.OldRentlasService;
+import damian.demo.service.oldRent.OldRentalsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +24,12 @@ public class RentServiceImpl implements RentService {
 
     @Autowired
     private EmailService emailService;
-
     @Autowired
     private RentRepository rentRepository;
     @Autowired
     private CarService carService;
     @Autowired
-    private OldRentlasService oldRentalsService;
+    private OldRentalsService oldRentalsService;
 
     @Autowired
     public RentServiceImpl(){
@@ -44,14 +43,14 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public void proofOfPayment(String paymentMethod, int price) {
-        if (paymentMethod.equals("Paragon")) {
+        if (paymentMethod.equals("bill")) {
             sendMailWithReceipt(price);
-        } else {
+        } else if(paymentMethod.equals("invoice")) {
             sendMailWithInvoice(price);
         }
     }
 
-    private void sendMailWithReceipt(int price) {
+    public void sendMailWithReceipt(int price) {
         try {
             emailService.sendMail(User.online().getEmail(), "Auto zostało wypożyczone ",
                     "<b>Witaj " + User.online().getFirstName() + "!</b><br>" +
@@ -71,7 +70,7 @@ public class RentServiceImpl implements RentService {
         }
     }
 
-    private void sendMailWithInvoice(int price) {
+    public void sendMailWithInvoice(int price) {
         try {
             emailService.sendMail(User.online().getEmail(), "Auto zostało wypożyczone ",
                     "<b>Witaj " + User.online().getFirstName() + "!</b><br>" +
@@ -86,6 +85,13 @@ public class RentServiceImpl implements RentService {
         }
     }
 
+    @Override
+    public void rent(CurrentRentals rent, Car car) {
+        car.setAvalible(false);
+        carService.save(car);
+        rentRepository.save(rent);
+
+    }
 
     @Override
     public List<Car> showCustomersCar(Employee employee) {
@@ -106,18 +112,11 @@ public class RentServiceImpl implements RentService {
 //    public List retriveCarFromEmployee(List rentsRecord) {
 //        return rentsRecord
 //                .stream()
-//                .map(record::getCar)
+//                .map(CurrentRentals::getCar)
 //                .collect(Collectors.toList());
+
 //    }
 
-
-    @Override
-    public void rent(CurrentRentals rent, Car car) {
-        car.setAvalible(false);
-        carService.save(car);
-        rentRepository.save(rent);
-
-    }
 
     @Override
     public void returnCar(Employee employee, Car car) {
@@ -133,5 +132,6 @@ public class RentServiceImpl implements RentService {
         oldRentalsService.archive(oldRentals);
         rentRepository.delete(rentsRecord.get());
     }
+
 
 }

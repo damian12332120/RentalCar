@@ -1,4 +1,4 @@
-package damian.demo.service.Car;
+package damian.demo.service.car;
 
 import damian.demo.entity.Car;
 import org.springframework.stereotype.Service;

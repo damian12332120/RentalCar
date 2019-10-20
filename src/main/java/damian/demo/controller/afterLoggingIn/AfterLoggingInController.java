@@ -1,8 +1,8 @@
 package damian.demo.controller.afterLoggingIn;
 
 import damian.demo.online.User;
-import damian.demo.service.Car.CarService;
-import damian.demo.service.oldRent.OldRentlasService;
+import damian.demo.service.car.CarService;
+import damian.demo.service.oldRent.OldRentalsService;
 import damian.demo.service.rent.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class AfterLoggingInController {
     @Autowired
     private RentService rentService;
     @Autowired
-    private OldRentlasService oldRentlasService;
+    private OldRentalsService oldRentlasService;
 
 
     public AfterLoggingInController() {
@@ -37,10 +37,10 @@ public class AfterLoggingInController {
     @GetMapping("/showCustomerCars")
     public String showCustomerCars(Model theModel) {
 
-        theModel.addAttribute("rentals", oldRentlasService.showRent(User.online()));
+        theModel.addAttribute("rentals", oldRentlasService.showOldRent(User.online()));
         theModel.addAttribute("car", rentService.showCustomersCar(User.online()));
         theModel.addAttribute("employee", User.online());
-        return "optionsAfterLoggingIn/showRent/showRent";
+        return "optionsAfterLoggingIn/showOldRent/showOldRent";
     }
 
     @GetMapping("/dataChange")

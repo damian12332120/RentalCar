@@ -1,7 +1,7 @@
 package damian.demo.controller.registration;
 
 import damian.demo.entity.Employee;
-import damian.demo.service.Employee.EmployeeService;
+import damian.demo.service.employee.EmployeeService;
 import damian.demo.service.email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

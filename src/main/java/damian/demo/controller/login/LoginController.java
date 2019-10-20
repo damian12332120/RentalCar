@@ -2,7 +2,7 @@ package damian.demo.controller.login;
 
 import damian.demo.entity.Employee;
 import damian.demo.online.User;
-import damian.demo.service.Employee.EmployeeService;
+import damian.demo.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

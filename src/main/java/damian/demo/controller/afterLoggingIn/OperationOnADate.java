@@ -2,8 +2,8 @@ package damian.demo.controller.afterLoggingIn;
 
 import damian.demo.entity.Employee;
 import damian.demo.online.User;
-import damian.demo.service.Car.CarService;
-import damian.demo.service.Employee.EmployeeService;
+import damian.demo.service.car.CarService;
+import damian.demo.service.employee.EmployeeService;
 import damian.demo.service.email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

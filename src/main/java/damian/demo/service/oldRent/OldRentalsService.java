@@ -1,16 +1,18 @@
 package damian.demo.service.oldRent;
 
 
-import damian.demo.entity.CurrentRentals;
+import damian.demo.entity.Car;
 import damian.demo.entity.Employee;
 import damian.demo.entity.OldRentals;
 
 import java.util.List;
 
-public interface OldRentlasService {
+public interface OldRentalsService {
 
 
-    public List<OldRentals> showRent(Employee employee);
+    List<OldRentals> showOldRent(Employee employee);
 
     void archive(OldRentals rent);
+
+    void delete(Employee employee, Car car);
 }

@@ -1,4 +1,4 @@
-package damian.demo.service.Car;
+package damian.demo.service.car;
 
 import damian.demo.dao.cars.CarsRepository;
 import damian.demo.entity.Car;

@@ -3,9 +3,9 @@ import damian.demo.validator.UniqueLogin;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Objects;
 
 @Entity
-
 public class Employee {
 
     @Id
@@ -139,6 +139,24 @@ public class Employee {
         return java.util.UUID.randomUUID().toString();
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id &&
+                confirmationStatus == employee.confirmationStatus &&
+                Objects.equals(login, employee.login) &&
+                Objects.equals(firstName, employee.firstName) &&
+                Objects.equals(lastName, employee.lastName) &&
+                Objects.equals(email, employee.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, firstName, lastName, email, password);
+    }
 
     @Override
     public String toString() {

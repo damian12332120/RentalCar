@@ -1,4 +1,4 @@
-package damian.demo.service.Car;
+package damian.demo.service.car;
 
 import damian.demo.entity.Car;
 import org.junit.After;
@@ -22,10 +22,11 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest
 public class CarsServiceImplTest {
 
-    @Autowired
-    CarsServiceImpl carService;
     private Car car;
     private MockMvc mockMvc;
+
+    @Autowired
+    CarsServiceImpl carService;
 
     @Before
     public void setUp() {
@@ -38,7 +39,6 @@ public class CarsServiceImplTest {
         car.setBrand("VW");
         carService.save(car);
         assertEquals(car, carService.findById(car.getId()));
-
     }
 
     @Test
@@ -46,7 +46,6 @@ public class CarsServiceImplTest {
         car.setModel("Polo");
         carService.save(car);
         Car byId = carService.findById(car.getId());
-
         assertEquals(byId, car);
     }
 

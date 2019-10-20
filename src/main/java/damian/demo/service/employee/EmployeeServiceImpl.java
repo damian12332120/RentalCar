@@ -1,4 +1,4 @@
-package damian.demo.service.Employee;
+package damian.demo.service.employee;
 
 import damian.demo.dao.employee.EmployeeRepository;
 import damian.demo.entity.Employee;
@@ -51,7 +51,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Optional<Employee> findByLoginAndEmail(Employee theEmployee) {
-
         return employeeRepository.findByLogin(theEmployee.getLogin())
                 .filter(e -> e.getEmail().equals(theEmployee.getEmail()));
     }
