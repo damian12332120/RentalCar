@@ -28,7 +28,7 @@ public class AfterLoggingInControllerTest {
 
     @Before
     public void setUp() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(afterLoggingInController).build();
+       mockMvc = MockMvcBuilders.standaloneSetup(afterLoggingInController).build();
         Employee employee = new Employee();
         employee.setLogin("test");
         employee.setPassword("user");
@@ -37,7 +37,7 @@ public class AfterLoggingInControllerTest {
 
     @Test
     public void shouldOpenAfterLoginPageWhenHaveUser() throws Exception {
-        this.mockMvc.perform(get("/afterLoggingInController/showAvailableCars")
+        mockMvc.perform(get("/afterLoggingInController/showAvailableCars")
                 .param("employee", String.valueOf(User.online())))
                 .andExpect(status().isOk())
                 .andExpect(view().name("optionsAfterLoggingIn/rent/rentCar"));
@@ -45,10 +45,10 @@ public class AfterLoggingInControllerTest {
 
     @Test
     public void shouldOpenShowCustomerCarWhenHaveUser() throws Exception {
-        this.mockMvc.perform(get("/afterLoggingInController/showCustomerCars")
+        mockMvc.perform(get("/afterLoggingInController/showCustomerCars")
                 .param("employee", String.valueOf(User.online())))
                 .andExpect(status().isOk())
-                .andExpect(view().name("optionsAfterLoggdsingIn/showOldRent/showOldRent"));
+                .andExpect(view().name("optionsAfterLoggingIn/showOldRent/showOldRent"));
     }
 
     @Test
