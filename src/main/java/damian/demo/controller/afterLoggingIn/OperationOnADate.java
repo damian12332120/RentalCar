@@ -39,12 +39,12 @@ public class OperationOnADate {
     }
 
     @PostMapping("/updateData")
-    public String saveEmployee(@ModelAttribute("employee") Employee theEmployee, BindingResult bindingResult) {
+    public String saveEmployee(@ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
 
         if (!bindingResult.hasErrors()) {
-            theEmployee.setConfirmationStatus(true);
-            theEmployee.setPassword(encoder.encode(theEmployee.getPassword()));
-            employeeService.save(theEmployee);
+            employee.setConfirmationStatus(true);
+            employee.setPassword(encoder.encode(employee.getPassword()));
+            employeeService.save(employee);
             return "mainWindow/pageAfterLoggingIn";
         } else {
             return "optionsAfterLoggingIn/dataChange/change";
@@ -77,8 +77,6 @@ public class OperationOnADate {
                                 "<b> Zespół Wypożyczalnia Samochodowa<b>", true);
             } catch (MessagingException e) {
                 e.printStackTrace();
-
-
             }
             model.addAttribute("car", carService.findAvailableCars());
             return "mainWindow/main";

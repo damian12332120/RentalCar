@@ -21,6 +21,12 @@ public class CarsServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> findAll(){
+        return carsRepository.findAll();
+    }
+
+
+    @Override
     public Car findById(int theId) {
         Optional<Car> result = carsRepository.findById(theId);
 
@@ -34,6 +40,15 @@ public class CarsServiceImpl implements CarService {
                 .filter(Car::isAvalible)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Car> findNotAvailableCars() {
+        return carsRepository.findAll()
+                .stream()
+                .filter(e -> !e.isAvalible())
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public void save(Car car) {

@@ -43,4 +43,9 @@ public class OldRentalsServiceImpl implements OldRentalsService {
 
        oldRentalsRepository.delete(oldRentals.get());
     }
+
+    @Override
+    public List<OldRentals> showAllOldRentals(){
+        return oldRentalsRepository.findAll();
+    }
 }

@@ -134,4 +134,10 @@ public class RentServiceImpl implements RentService {
     }
 
 
+    @Override
+    public List<CurrentRentals> showCurrentRentals(){
+       return rentRepository.findAll();
+    }
+
+
 }

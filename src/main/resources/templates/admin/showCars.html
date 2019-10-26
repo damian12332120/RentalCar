@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Wypożyczalnia samochodów osobowych</title>
+</head>
+
+<body>
+<div class="container">
+
+    <h3 th:text="Zalogowany+' '+jako+' '+admin"></h3>
+    <hr>
+    <a th:href="@{/admin/showUsers}"
+       class="btn btn-info col-2">
+        Użytkownicy
+    </a>
+    <a th:href="@{/admin/showCars}"
+       class="btn btn-info col-2">
+        Samochody
+    </a>
+    <a th:href="@{/admin/showRents}"
+       class="btn btn-info col-2">
+        Wypożyczenia
+    </a>
+
+    <a th:href="@{/afterLoggingInController/logout}"
+       class="btn btn-info col-2"
+       onclick="if(!confirm('Czy na pewno chcesz się wylogować?'))return false">
+        Wylogowanie
+    </a>
+    <p></p>
+
+    <h4>Opcje auta:</h4>
+    <hr>
+
+    <a th:href="@{/admin/showAllCars}"
+       class="btn btn-info col-2">
+        Wyswietl wszystkie
+    </a>
+    <a th:href="@{/admin/showAvailableCars}"
+       class="btn btn-info col-2">
+        Wyświetl dostępne
+    </a>
+    <a th:href="@{/admin/showNotAvailableCars}"
+       class="btn btn-info col-3">
+        Wyświetl wypożyczone
+    </a>
+    <a th:href="@{/admin/addCar}"
+       class="btn btn-info col-2">
+        Dodaj auto
+    </a>
+    <p></p>
+</div>
+
+
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>Pojemnosc silnika w cm3</th>
+        <th>Rok Produkcji</th>
+        <th>Moc</th>
+        <th>Cena za dzień w zł</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="tempCars : ${cars}">
+
+        <td th:text="${tempCars.brand}"></td>
+        <td th:text="${tempCars.model}"></td>
+        <td th:text="${tempCars.engineCapacity}"></td>
+        <td th:text="${tempCars.yearOfproduction}"></td>
+        <td th:text="${tempCars.horsepower}"></td>
+        <td th:text="${tempCars.pricePerDay}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>

@@ -4,6 +4,7 @@ import damian.demo.entity.Employee;
 import damian.demo.online.User;
 import damian.demo.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,11 @@ public class LoginController {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
 
-    public LoginController(){
+    public LoginController() {
     }
 
     @GetMapping("/form")
@@ -32,16 +35,22 @@ public class LoginController {
 
     @GetMapping("/checkAndLoginUser")
     public String checkAndLoginUser(@ModelAttribute("employee") Employee theEmployee, Model model) {
+        if (checkIfHeIsAdmin(theEmployee.getLogin(), theEmployee.getPassword())) {
+            return "admin/page";
+        }
         Optional<Employee> result = employeeService.findByLoginAndPassword(theEmployee);
         if (result.isPresent() && result.get().isConfirmationStatus()) {
-                model.addAttribute("employee", result.get());
-                User.addLoggedIn(result.get());
-                return "mainWindow/pageAfterLoggingIn";
-            } else {
-                return "employees/loginForm";
-            }
+            model.addAttribute("employee", result.get());
+            User.addLoggedIn(result.get());
+            return "mainWindow/pageAfterLoggingIn";
+        } else {
+            return "employees/loginForm";
+        }
     }
 
+    public boolean checkIfHeIsAdmin(String login, String password) {
+        return login.equals("admin") && password.equals("admin");
+    }
 
 
 }

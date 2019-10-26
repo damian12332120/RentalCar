@@ -51,7 +51,6 @@ public class EmployeeServiceImplTest {
     @Test
     public void shouldSaveWhenPasswordIsCorrectAndEncode() {
         List<Employee> allEmployees = employeeService.findAll();
-        String password = "PPPPP";
         assertTrue(!allEmployees.isEmpty());
         assertTrue(passwordEncoder.matches(passwordBeforeSaveInDatabase, employee.getPassword()));
 
@@ -65,10 +64,10 @@ public class EmployeeServiceImplTest {
         assertEquals(employeeFromTheDatabase.get(), employee);
     }
 
-   @Test
-   public void shouldFindByConfirmationId(){
-       Employee employeeByConfirmationId = employeeService.getEmployeeByConfirmationId(employee.getConfirmationId());
-   assertEquals(employeeByConfirmationId,employee);
+    @Test
+    public void shouldFindByConfirmationId() {
+        Employee employeeByConfirmationId = employeeService.getEmployeeByConfirmationId(employee.getConfirmationId());
+        assertEquals(employeeByConfirmationId, employee);
     }
 
     @Test
@@ -78,7 +77,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test(expected = NoSuchElementException.class)
-    public void shouldDeleteUser(){
+    public void shouldDeleteUser() {
         employeeService.delete(employee);
         Optional<Employee> userByLogin = employeeService.findByLogin(employee.getLogin());
         assertEquals(true, userByLogin.get());
@@ -86,7 +85,7 @@ public class EmployeeServiceImplTest {
 
 
     @Test
-    public void shouldFindByLoginAndPasworrd(){
+    public void shouldFindByLoginAndPasworrd() {
         Optional<Employee> employeebyLoginAndPassword = employeeService.findByLoginAndPassword(employee);
         assertTrue(passwordEncoder.matches(passwordBeforeSaveInDatabase, employee.getPassword()));
     }

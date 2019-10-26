@@ -63,6 +63,14 @@ public class CarsServiceImplTest {
         assertTrue(!availableCars.isEmpty());
     }
 
+    @Test
+    public void sholudNotFindAvailableCars() {
+        car.setAvalible(false);
+        carService.save(car);
+        List<Car> availableCars = carService.findNotAvailableCars();
+        assertTrue(!availableCars.isEmpty());
+    }
+
     @After
     public void tearDown() {
         carService.delete(car);

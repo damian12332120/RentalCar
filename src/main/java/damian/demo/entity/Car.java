@@ -32,6 +32,14 @@ public class Car {
     public Car() {
     }
 
+    public Car(String brand, String model, int yearOfproduction, int engineCapacity, String horsepower, int pricePerDay) {
+        this.brand = brand;
+        this.model = model;
+        this.yearOfproduction = yearOfproduction;
+        this.engineCapacity = engineCapacity;
+        this.horsepower = horsepower;
+        this.pricePerDay = pricePerDay;
+    }
 
     public int getId() {
         return id;
@@ -120,15 +128,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "car{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", yearOfproduction=" + yearOfproduction +
-                ", engineCapacity=" + engineCapacity +
-                ", horsepower='" + horsepower + '\'' +
-                ", pricePerDay=" + pricePerDay +
-                ", isAvalible=" + isAvalible +
-                '}';
+        return
+                "id=" + id + brand+" " + model;
     }
 }

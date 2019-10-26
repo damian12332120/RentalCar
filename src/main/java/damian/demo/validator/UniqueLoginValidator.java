@@ -16,10 +16,8 @@ public class UniqueLoginValidator implements ConstraintValidator<UniqueLogin, St
     @Autowired
     private EmployeeService employeeService;
 
-
     public UniqueLoginValidator() {
     }
-
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {

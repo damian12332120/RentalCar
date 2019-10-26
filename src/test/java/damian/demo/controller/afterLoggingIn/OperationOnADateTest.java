@@ -22,7 +22,8 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringRunner.class)
 @AutoConfigureWebTestClient()
@@ -30,10 +31,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class OperationOnADateTest {
 
 
-    private MockMvc mockMvc;
-    private Employee employee;
     @Autowired
     CarsServiceImpl carsService;
+    private MockMvc mockMvc;
+    private Employee employee;
     @Autowired
     private OperationOnADate operationOnADate;
     @Autowired
@@ -59,7 +60,6 @@ public class OperationOnADateTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("optionsAfterLoggingIn/dataChange/change"));
     }
-
 
     @Test
     public void shouldUpdateData() throws Exception {
@@ -118,7 +118,7 @@ public class OperationOnADateTest {
                 .andExpect(view().name("employees/loginForm"));
         Optional<Employee> employeeAfterChange = employeeService.findByLogin(employee.getLogin());
         assertTrue(passwordEncoder.matches(newPasswordBeforeCoder, employeeAfterChange.get().getPassword()));
-   employeeService.delete(employeeAfterChange.get());
+        employeeService.delete(employeeAfterChange.get());
     }
 
     @After

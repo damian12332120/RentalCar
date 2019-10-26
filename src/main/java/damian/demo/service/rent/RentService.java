@@ -21,4 +21,5 @@ public interface RentService {
 
     void proofOfPayment(String paymentMethod, int price);
 
+    List<CurrentRentals> showCurrentRentals();
 }

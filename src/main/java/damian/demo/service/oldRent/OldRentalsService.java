@@ -15,4 +15,6 @@ public interface OldRentalsService {
     void archive(OldRentals rent);
 
     void delete(Employee employee, Car car);
+
+    List<OldRentals> showAllOldRentals();
 }

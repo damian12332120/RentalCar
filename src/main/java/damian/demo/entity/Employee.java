@@ -160,16 +160,9 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "employee{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", confirmationStatus=" + confirmationStatus +
-                ", confirmationId='" + confirmationId + '\'' +
-                '}';
+        return login + " " +
+                firstName+ " "+
+                 lastName;
     }
 }
 

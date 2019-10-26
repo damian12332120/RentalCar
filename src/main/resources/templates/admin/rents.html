@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Wypożyczalnia samochodów osobowych</title>
+</head>
+
+<body>
+<div class="container">
+
+    <h3 th:text="Zalogowany+' '+jako+' '+admin"></h3>
+    <hr>
+    <a th:href="@{/admin/showUsers}"
+       class="btn btn-info col-2">
+        Użytkownicy
+    </a>
+    <a th:href="@{/admin/showCars}"
+       class="btn btn-info col-2">
+        Samochody
+    </a>
+    <a th:href="@{/admin/showRents}"
+       class="btn btn-info col-2">
+        Wypożyczenia
+    </a>
+
+    <a th:href="@{/afterLoggingInController/logout}"
+       class="btn btn-info col-2"
+       onclick="if(!confirm('Czy na pewno chcesz się wylogować?'))return false">
+        Wylogowanie
+    </a>
+    <p></p>
+
+    <h4>Opcje wypożyczeń</h4>
+    <hr>
+
+    <a th:href="@{/admin/showCurrentRentals}"
+       class="btn btn-info col-3">
+        Aktualne wypożyczenia
+    </a>
+    <a th:href="@{/admin/showRentalStories}"
+       class="btn btn-info col-2">
+        Historia wypożyczeń
+    </a>
+
+    <p></p>
+</div>
+</body>
